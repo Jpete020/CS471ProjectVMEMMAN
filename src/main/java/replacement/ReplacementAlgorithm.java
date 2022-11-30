@@ -36,6 +36,8 @@ abstract public class ReplacementAlgorithm {
         if (frame != -1) {
             totalPageHits++;
             pageHit(page);
+        } else if (frames.size() < framesAllocated) {
+            frames.add(page);
         } else {
             totalPageFaults++;
             pageFault(page);
