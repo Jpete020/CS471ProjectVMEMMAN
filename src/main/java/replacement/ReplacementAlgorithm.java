@@ -9,6 +9,7 @@ abstract public class ReplacementAlgorithm {
     private final int pageSize;
     private int totalPageFaults;
     private int totalPageHits;
+    private int maxPages;
 
 
     protected ReplacementAlgorithm(int framesAllocated, int pageSize) {
@@ -17,6 +18,7 @@ abstract public class ReplacementAlgorithm {
         this.pageSize = pageSize;
         this.totalPageHits = 0;
         this.totalPageFaults = 0;
+        this.maxPages = 0;
     }
 
     protected int pageInFrames(int page) {
@@ -38,6 +40,9 @@ abstract public class ReplacementAlgorithm {
 
     public void addPage(int address) {
         int page = convertAddressToPage(address);
+
+        maxPages = Math.max(page, maxPages);
+
         int frame = pageInFrames(page);
         if (frame != -1) {
             totalPageHits++;
