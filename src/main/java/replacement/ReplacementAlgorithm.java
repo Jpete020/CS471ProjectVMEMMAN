@@ -27,12 +27,16 @@ abstract public class ReplacementAlgorithm {
         return -1;
     }
 
+    public int convertAddressToPage(int address) {
+        return address / pageSize;
+    }
+
     protected abstract void pageHit(int page, int frame);
 
     protected abstract void pageFault(int page);
 
     public void addPage(int address) {
-        int page = address / pageSize;
+        int page = convertAddressToPage(address);
         int frame = pageInFrames(page);
         if (frame != -1) {
             totalPageHits++;
