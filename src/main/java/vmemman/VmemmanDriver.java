@@ -14,8 +14,8 @@ public class VmemmanDriver {
 
     public static void main(String[] args){
         String inputFile = args[0];
-        int pageSize = Integer.parseInt(args[1]);
-        int numberOfFrames = Integer.parseInt(args[2]);
+        int pageSize = Integer.parseInt(args[2]);
+        int numberOfFrames = Integer.parseInt(args[3]);
         ArrayList<Integer> addresses = new ArrayList<>();
         BufferedReader reader;
         BufferedWriter writer;
@@ -51,7 +51,7 @@ public class VmemmanDriver {
         }
 
         try {
-            writer = new BufferedWriter(new FileWriter(args[3]));
+            writer = new BufferedWriter(new FileWriter(args[1]));
 
             writer.write(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
             writer.newLine();
