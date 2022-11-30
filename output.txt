@@ -1,5 +1,0 @@
-Page Size       #of pages       Page replacement ALG                     Page fault percentage
-2000            49              class replacement.FirstInFirstOut        0.016667       
-2000            49              class replacement.LeastRecentlyUsed      0.016667       
-2000            49              class replacement.MostRecentlyUsed       0.682333       
-2000            49              class replacement.Optimal                0.016667       

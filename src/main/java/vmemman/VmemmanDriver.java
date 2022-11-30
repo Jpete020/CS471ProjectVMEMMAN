@@ -14,11 +14,10 @@ public class VmemmanDriver {
 
     public static void main(String[] args){
         String inputFile = args[0];
-        int pageSize = Integer.parseInt(args[2]);
-        int numberOfFrames = Integer.parseInt(args[3]);
+        int pageSize = Integer.parseInt(args[1]);
+        int numberOfFrames = Integer.parseInt(args[2]);
         ArrayList<Integer> addresses = new ArrayList<>();
         BufferedReader reader;
-        BufferedWriter writer;
 
         try {
             reader = new BufferedReader(new FileReader(inputFile));
@@ -50,22 +49,11 @@ public class VmemmanDriver {
             optimal.addPage(address);
         }
 
-        try {
-            writer = new BufferedWriter(new FileWriter(args[1]));
+        System.out.println(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
+        System.out.println(fifo.toPrettyString());
+        System.out.println(lru.toPrettyString());
+        System.out.println(mru.toPrettyString());
+        System.out.println(optimal.toPrettyString());
 
-            writer.write(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
-            writer.newLine();
-            writer.write(fifo.toPrettyString());
-            writer.newLine();
-            writer.write(lru.toPrettyString());
-            writer.newLine();
-            writer.write(mru.toPrettyString());
-            writer.newLine();
-            writer.write(optimal.toPrettyString());
-
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
