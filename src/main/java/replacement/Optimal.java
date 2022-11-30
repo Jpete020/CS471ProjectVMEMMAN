@@ -34,6 +34,24 @@ public class Optimal extends ReplacementAlgorithm {
 
     @Override
     protected void pageFault(int page) {
+        int lastIndex = currentPosition;
+        int frameToReplace = -1;
 
+        for (int i = 0; i < frames.size(); i++) {
+            ArrayList<Integer> indices = optimalAddresses.get(frames.get(i));
+            for (Integer index : indices) {
+                if (index > currentPosition) {
+                    if (index > lastIndex) {
+                        lastIndex = index;
+                        frameToReplace = i;
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        frames.remove(frameToReplace);
+        frames.add(page);
     }
 }
