@@ -1,13 +1,17 @@
 package vmemman;
 
 import java.io.*;
+import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public class VmemmanDriver {
 
     public static void main(String[] args){
+        String inputFile = args[0];
+        ArrayList<Integer> addresses = new ArrayList<>();
         BufferedReader reader;
         BufferedWriter writer;
-        String inputFile = args[0];
 
         try {
             reader = new BufferedReader(new FileReader(inputFile));
@@ -15,8 +19,8 @@ public class VmemmanDriver {
             String line = reader.readLine();
 
             while (line != null) {
-                writer.write(line);
-                writer.newLine();
+                addresses.add(parseInt(line));
+                //writer.write(line);
                 // read next line
                 line = reader.readLine();
             }
