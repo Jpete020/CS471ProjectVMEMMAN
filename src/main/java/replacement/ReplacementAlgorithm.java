@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 abstract public class ReplacementAlgorithm {
     protected ArrayList<Integer> frames;
+    protected int currentPosition;
     private final int framesAllocated;
     private final int pageSize;
     private int totalPageFaults;
@@ -48,6 +49,7 @@ abstract public class ReplacementAlgorithm {
             totalPageFaults++;
             pageFault(page);
         }
+        currentPosition++;
     }
 
     public int getTotalPageHits() {

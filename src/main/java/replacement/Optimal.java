@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Optimal extends ReplacementAlgorithm {
-    private HashMap<Integer, ArrayList<Integer>> optimalAddresses;
+    private final HashMap<Integer, ArrayList<Integer>> optimalAddresses;
 
     Optimal(int framesAllocated, int pageSize) {
         super(framesAllocated, pageSize);
+        optimalAddresses = new HashMap<>();
     }
 
     public void loadAddress(ArrayList<Integer> addresses) {
