@@ -6,7 +6,7 @@ public class Optimal extends ReplacementAlgorithm {
     }
 
     @Override
-    protected void replace() {
+    protected void replace(int page) {
 
     }
 }
