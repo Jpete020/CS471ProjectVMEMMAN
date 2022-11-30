@@ -6,7 +6,13 @@ public class FirstInFirstOut extends ReplacementAlgorithm {
     }
 
     @Override
-    protected void replace(int page) {
+    protected void pageHit(int page) {
 
+    }
+
+    @Override
+    protected void pageFault(int page) {
+        frames.remove(0);
+        frames.add(page);
     }
 }

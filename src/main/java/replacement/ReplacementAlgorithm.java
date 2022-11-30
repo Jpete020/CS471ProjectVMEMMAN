@@ -6,16 +6,16 @@ abstract public class ReplacementAlgorithm {
     protected ArrayList<Integer> frames;
     protected int framesAllocated;
     protected int pageSize;
-    protected int pageFaults;
-    protected int pageHits;
+    protected int totalPageFaults;
+    protected int totalPageHits;
 
 
     protected ReplacementAlgorithm(int framesAllocated, int pageSize) {
         frames = new ArrayList<>(framesAllocated);
         this.framesAllocated = framesAllocated;
         this.pageSize = pageSize;
-        this.pageFaults = 0;
-        this.pageHits = 0;
+        this.totalPageHits = 0;
+        this.totalPageFaults = 0;
     }
 
     protected int pageInFrames(int page) {
@@ -27,15 +27,26 @@ abstract public class ReplacementAlgorithm {
         return -1;
     }
 
-    protected abstract void replace(int page);
+    protected abstract void pageHit(int page);
+
+    protected abstract void pageFault(int page);
 
     protected void addPage(int page) {
         int frame = pageInFrames(page);
         if (frame != -1) {
-            pageHits++;
+            totalPageHits++;
+            pageHit(page);
         } else {
-            pageFaults++;
-            replace(page);
+            totalPageFaults++;
+            pageFault(page);
         }
+    }
+
+    public int getTotalPageHits() {
+        return totalPageHits;
+    }
+
+    public int getTotalPageFaults() {
+        return totalPageFaults;
     }
 }

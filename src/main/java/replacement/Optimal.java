@@ -6,7 +6,12 @@ public class Optimal extends ReplacementAlgorithm {
     }
 
     @Override
-    protected void replace(int page) {
+    protected void pageHit(int page) {
+
+    }
+
+    @Override
+    protected void pageFault(int page) {
 
     }
 }
