@@ -27,15 +27,16 @@ abstract public class ReplacementAlgorithm {
         return -1;
     }
 
-    protected abstract void pageHit(int page);
+    protected abstract void pageHit(int page, int frame);
 
     protected abstract void pageFault(int page);
 
-    protected void addPage(int page) {
+    public void addPage(int address) {
+        int page = address / pageSize;
         int frame = pageInFrames(page);
         if (frame != -1) {
             totalPageHits++;
-            pageHit(page);
+            pageHit(page, frame);
         } else if (frames.size() < framesAllocated) {
             totalPageFaults++;
             frames.add(page);

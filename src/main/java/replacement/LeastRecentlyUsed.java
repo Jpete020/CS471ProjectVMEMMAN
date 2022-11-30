@@ -6,8 +6,9 @@ public class LeastRecentlyUsed extends ReplacementAlgorithm {
     }
 
     @Override
-    protected void pageHit(int page) {
-
+    protected void pageHit(int page, int frame) {
+        frames.remove(frame);
+        frames.add(page);
     }
 
     @Override

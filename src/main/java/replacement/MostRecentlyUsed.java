@@ -6,7 +6,7 @@ public class MostRecentlyUsed extends ReplacementAlgorithm {
     }
 
     @Override
-    protected void pageHit(int page) {
+    protected void pageHit(int page, int frame) {
 
     }
 
