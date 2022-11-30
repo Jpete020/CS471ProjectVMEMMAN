@@ -76,4 +76,26 @@ abstract public class ReplacementAlgorithm {
     public double pageFaultPercentage() {
         return totalPageFaults / (double) (totalPageHits + totalPageFaults);
     }
+
+    public String toPrettyString() {
+        return String.format(
+                "%-15d %-15d %-40s %-15f",
+                pageSize,
+                maxPages,
+                this.getClass(),
+                pageFaultPercentage()
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "ReplacementAlgorithm{" +
+                "frames=" + frames +
+                ", currentPosition=" + currentPosition +
+                ", framesAllocated=" + framesAllocated +
+                ", pageSize=" + pageSize +
+                ", totalPageFaults=" + totalPageFaults +
+                ", totalPageHits=" + totalPageHits +
+                '}';
+    }
 }
