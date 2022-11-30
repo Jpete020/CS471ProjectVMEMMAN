@@ -13,6 +13,7 @@ public class LeastRecentlyUsed extends ReplacementAlgorithm {
 
     @Override
     protected void pageFault(int page) {
-
+        frames.remove(0);
+        frames.add(page);
     }
 }
