@@ -14,30 +14,26 @@ public class VmemmanDriver {
 
     public static void main(String[] args){
         String inputFile = args[0];
+        int pageSize = Integer.parseInt(args[1]);
+        int numberOfFrames = Integer.parseInt(args[2]);
         ArrayList<Integer> addresses = new ArrayList<>();
         BufferedReader reader;
         BufferedWriter writer;
 
         try {
             reader = new BufferedReader(new FileReader(inputFile));
-            writer = new BufferedWriter(new FileWriter("output.txt"));
             String line = reader.readLine();
 
             while (line != null) {
                 addresses.add(parseInt(line));
-                //writer.write(line);
-                // read next line
                 line = reader.readLine();
             }
 
             reader.close();
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        int pageSize = 512;
-        int numberOfFrames = 4;
 
         // Algorithms
         FirstInFirstOut fifo = new FirstInFirstOut(numberOfFrames, pageSize);
@@ -54,10 +50,22 @@ public class VmemmanDriver {
             optimal.addPage(address);
         }
 
-        System.out.println(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
-        System.out.println(fifo.toPrettyString());
-        System.out.println(lru.toPrettyString());
-        System.out.println(mru.toPrettyString());
-        System.out.println(optimal.toPrettyString());
+        try {
+            writer = new BufferedWriter(new FileWriter("output.txt"));
+
+            writer.write(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
+            writer.newLine();
+            writer.write(fifo.toPrettyString());
+            writer.newLine();
+            writer.write(lru.toPrettyString());
+            writer.newLine();
+            writer.write(mru.toPrettyString());
+            writer.newLine();
+            writer.write(optimal.toPrettyString());
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
