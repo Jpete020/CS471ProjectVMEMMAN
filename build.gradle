@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -16,4 +16,22 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+apply plugin : "java"
+ext {
+    javaMainClass = "vmemman.VmemmanDriver"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+jar {
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Implementation-Title': 'VMEMMAN',
+                'Implementation-Version': '1.0',
+                'Main-Class': javaMainClass
+    }
 }
