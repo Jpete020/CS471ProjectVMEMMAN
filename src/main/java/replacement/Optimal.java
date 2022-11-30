@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Optimal extends ReplacementAlgorithm {
     private final HashMap<Integer, ArrayList<Integer>> optimalAddresses;
 
-    Optimal(int framesAllocated, int pageSize) {
+    public Optimal(int framesAllocated, int pageSize) {
         super(framesAllocated, pageSize);
         optimalAddresses = new HashMap<>();
     }
@@ -39,6 +39,11 @@ public class Optimal extends ReplacementAlgorithm {
 
         for (int i = 0; i < frames.size(); i++) {
             ArrayList<Integer> indices = optimalAddresses.get(frames.get(i));
+
+            System.out.println(currentPosition);
+            System.out.println(indices);
+            System.out.println();
+
             for (Integer index : indices) {
                 if (index > currentPosition) {
                     if (index > lastIndex) {

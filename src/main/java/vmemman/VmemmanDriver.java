@@ -1,5 +1,10 @@
 package vmemman;
 
+import replacement.FirstInFirstOut;
+import replacement.LeastRecentlyUsed;
+import replacement.MostRecentlyUsed;
+import replacement.Optimal;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -29,6 +34,24 @@ public class VmemmanDriver {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        int pageSize = 512;
+        int numberOfFrames = 4;
+
+        // Algorithms
+        FirstInFirstOut fifo = new FirstInFirstOut(numberOfFrames, pageSize);
+        LeastRecentlyUsed lru = new LeastRecentlyUsed(numberOfFrames, pageSize);
+        MostRecentlyUsed mru = new MostRecentlyUsed(numberOfFrames, pageSize);
+        Optimal optimal = new Optimal(numberOfFrames, pageSize);
+
+        optimal.loadAddress(addresses);
+
+        for (Integer address : addresses) {
+            fifo.addPage(address);
+            lru.addPage(address);
+            mru.addPage(address);
+            optimal.addPage(address);
         }
     }
 }

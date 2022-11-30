@@ -1,7 +1,7 @@
 package replacement;
 
 public class MostRecentlyUsed extends ReplacementAlgorithm {
-    MostRecentlyUsed(int framesAllocated, int pageSize) {
+    public MostRecentlyUsed(int framesAllocated, int pageSize) {
         super(framesAllocated, pageSize);
     }
 
