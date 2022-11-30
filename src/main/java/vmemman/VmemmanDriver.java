@@ -36,8 +36,8 @@ public class VmemmanDriver {
             e.printStackTrace();
         }
 
-        int pageSize = 512;
-        int numberOfFrames = 4;
+        int pageSize = 2048;
+        int numberOfFrames = 12;
 
         // Algorithms
         FirstInFirstOut fifo = new FirstInFirstOut(numberOfFrames, pageSize);
@@ -53,5 +53,11 @@ public class VmemmanDriver {
             mru.addPage(address);
             optimal.addPage(address);
         }
+
+        
+        System.out.println(fifo.pageFaultPercentage());
+        System.out.println(lru.pageFaultPercentage());
+        System.out.println(mru.pageFaultPercentage());
+        System.out.println(optimal.pageFaultPercentage());
     }
 }

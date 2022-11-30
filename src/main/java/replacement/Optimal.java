@@ -40,9 +40,7 @@ public class Optimal extends ReplacementAlgorithm {
         for (int i = 0; i < frames.size(); i++) {
             ArrayList<Integer> indices = optimalAddresses.get(frames.get(i));
 
-            System.out.println(currentPosition);
-            System.out.println(indices);
-            System.out.println();
+            boolean flag = true;
 
             for (Integer index : indices) {
                 if (index > currentPosition) {
@@ -51,8 +49,14 @@ public class Optimal extends ReplacementAlgorithm {
                         frameToReplace = i;
                     }
 
+                    flag = false;
+
                     break;
                 }
+            }
+            if (flag) {
+                frameToReplace = i;
+                break;
             }
         }
 

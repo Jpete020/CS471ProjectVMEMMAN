@@ -67,4 +67,8 @@ abstract public class ReplacementAlgorithm {
     public int getPageSize() {
         return pageSize;
     }
+
+    public double pageFaultPercentage() {
+        return totalPageFaults / (double) (totalPageHits + totalPageFaults);
+    }
 }
