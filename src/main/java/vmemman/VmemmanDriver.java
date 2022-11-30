@@ -51,7 +51,7 @@ public class VmemmanDriver {
         }
 
         try {
-            writer = new BufferedWriter(new FileWriter("output.txt"));
+            writer = new BufferedWriter(new FileWriter(args[3]));
 
             writer.write(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
             writer.newLine();
