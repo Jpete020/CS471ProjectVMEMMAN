@@ -54,7 +54,7 @@ public class VmemmanDriver {
         }
 
         // Output
-        System.out.println(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
+        System.out.println(String.format("%-15s %-15s %-15s %-40s %-15s","Page Size","#of pages", "#of Frames","Page replacement ALG","Page fault percentage"));
         System.out.println(fifo.toPrettyString());
         System.out.println(lru.toPrettyString());
         System.out.println(mru.toPrettyString());

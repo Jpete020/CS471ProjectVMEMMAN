@@ -117,9 +117,10 @@ abstract public class ReplacementAlgorithm {
      */
     public String toPrettyString() {
         return String.format(
-                "%-15d %-15d %-40s %-15f",
+                "%-15d %-15d %-15d %-40s %-15f",
                 pageSize,
                 pages.size(),
+                framesAllocated,
                 this.getClass(),
                 pageFaultPercentage()
         );
