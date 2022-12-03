@@ -1,6 +1,6 @@
 # Problem 2: Virtual Memory Managment Problem
 
-The virtual memory management problem relates to the efficiency of various page replacement methods whilst retrieving pages from virtual memory.
+The virtual memory management problem relates to the efficiency of various page replacement methods while retrieving pages from virtual memory.
 The following list contains the common page replacement algorithms that are tested in this program:
 * FIFO - First page brought in, is the first page to be replaced
 * LRU - Replaces the least recently used page
