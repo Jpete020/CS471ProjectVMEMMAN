@@ -36,11 +36,20 @@ public class Optimal extends ReplacementAlgorithm {
         }
     }
 
+    /**
+     * Does nothing
+     * @param page The given page
+     * @param frame The frame where the page exists
+     */
     @Override
     protected void pageHit(int page, int frame) {
         // Do nothing
     }
 
+    /**
+     * Replace the frame containing the page that appears last or not at all
+     * @param page The given page
+     */
     @Override
     protected void pageFault(int page) {
         int lastIndex = currentPosition;
