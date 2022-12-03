@@ -1,6 +1,7 @@
 package replacement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 abstract public class ReplacementAlgorithm {
     protected ArrayList<Integer> frames;
@@ -9,7 +10,7 @@ abstract public class ReplacementAlgorithm {
     private final int pageSize;
     private int totalPageFaults;
     private int totalPageHits;
-    private int maxPages;
+    private HashSet<Integer> pages;
 
     /**
      * An abstract replacement algorithm
@@ -22,7 +23,7 @@ abstract public class ReplacementAlgorithm {
         this.pageSize = pageSize;
         this.totalPageHits = 0;
         this.totalPageFaults = 0;
-        this.maxPages = 0;
+        this.pages = new HashSet<>();
     }
 
     /**
@@ -68,8 +69,8 @@ abstract public class ReplacementAlgorithm {
     public void addPage(int address) {
         int page = convertAddressToPage(address);
 
-        // Assume that the largest page value is the largest page
-        maxPages = Math.max(page, maxPages);
+        // Add page to the set of seen pages
+        this.pages.add(page);
 
         // Identify the frame
         int frame = pageInFrames(page);
@@ -118,7 +119,7 @@ abstract public class ReplacementAlgorithm {
         return String.format(
                 "%-15d %-15d %-40s %-15f",
                 pageSize,
-                maxPages,
+                pages.size(),
                 this.getClass(),
                 pageFaultPercentage()
         );

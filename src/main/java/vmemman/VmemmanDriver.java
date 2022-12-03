@@ -13,9 +13,12 @@ import static java.lang.Integer.parseInt;
 public class VmemmanDriver {
 
     public static void main(String[] args){
+        // Gather inputs
         String inputFile = args[0];
         int pageSize = Integer.parseInt(args[1]);
         int numberOfFrames = Integer.parseInt(args[2]);
+
+        // Read addresses
         ArrayList<Integer> addresses = new ArrayList<>();
         BufferedReader reader;
 
@@ -42,6 +45,7 @@ public class VmemmanDriver {
 
         optimal.loadAddress(addresses);
 
+        // Start the algorithms
         for (Integer address : addresses) {
             fifo.addPage(address);
             lru.addPage(address);
@@ -49,11 +53,13 @@ public class VmemmanDriver {
             optimal.addPage(address);
         }
 
+        // Output
         System.out.println(String.format("%-15s %-15s %-40s %-15s","Page Size","#of pages","Page replacement ALG","Page fault percentage"));
         System.out.println(fifo.toPrettyString());
         System.out.println(lru.toPrettyString());
         System.out.println(mru.toPrettyString());
         System.out.println(optimal.toPrettyString());
+        System.out.println();
 
     }
 }
